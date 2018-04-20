@@ -1,5 +1,5 @@
 from django.forms import ModelForm, TextInput
-from .models import Country
+from .models import Country, Artist
 
 class CountryForm(ModelForm):
     class Meta:
@@ -9,6 +9,19 @@ class CountryForm(ModelForm):
             'name': TextInput(
                 attrs = {
                     'placeholder': 'Search by Country...'
+                }
+            )
+        }
+
+
+class ArtistForm(ModelForm):
+    class Meta:
+        model = Artist
+        fields = ['name']
+        widgets = {
+            'name': TextInput(
+                attrs = {
+                    'placeholder': 'Search Artist...'
                 }
             )
         }

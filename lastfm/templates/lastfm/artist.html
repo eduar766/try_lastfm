@@ -1,0 +1,55 @@
+{% extends 'lastfm/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  {% for artist in artist_collect %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>{{ artist.name }}</h3>
+        </div>
+        <div class="col-md-8">
+          <form class="" action="" method="post">
+            {% csrf_token %}
+            {{ form.name }}
+            <button type="submit" name="button">Search</button>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <a href="{{ artist.link}}">
+            <img src="{{ artist.photo }}" alt="">
+          </a>
+          <p>Listeners: {{ artist.listeners }}</p>
+          <p>Playcount: {{ artist.playcount }}</p>
+        </div>
+        <div class="col-md-8">
+          {{ artist.bio }}
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <h3>Related Artist</h3>
+      </div>
+      <div class="row">
+        {% for artist in artist_related_collect %}
+        <div class="col-md-3">
+          <a href="{{ artist.related_link }}" target="_blank">
+            <img src="{{ artist.related_img }}" alt="">
+          </a><br>
+          <a href="{{ artist.related_link }}" target="_blank">
+            {{ artist.related }}
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+  {% endfor %}
+
+{% endblock %}
